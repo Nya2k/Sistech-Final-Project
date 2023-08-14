@@ -11,32 +11,31 @@ interface Post{
   tag: string[];
 }
 
+let usertoken = '';
+let username = '';
 const defaultContentDetail : {[key: number]: boolean} = {};
  
-export default function Posts() {
-  const [contentDetail, setContentDetail] = useState(false);
+export default function YourPosts() {
+  const [contentDetail, setContentDetail] = useState(defaultContentDetail);
   const [posts, setPosts] = useState<Post[]>([]);
   
-  // const handleContentDetail = (postId: number) => {
-    // setContentDetail([...contentDetail, !contentDetail[postId]])
-    // console.log(postId)
-    // setContentDetail((contentDetail) => ({
-    //   ...contentDetail,
-    //   [postId]: !contentDetail[postId]
-    // }));
-  // };
-
   const handleContentDetail = (postId: number) => {
-    setContentDetail(!contentDetail)
-  }
+    setContentDetail((contentDetail) => ({
+      ...contentDetail,
+      [postId]: !contentDetail[postId]
+    }));
+  };
 
   useEffect (() => {
+    usertoken = localStorage.getItem('userToken') || '';
+    username = localStorage.getItem('userName') || '';
     const fetchData = async () => {
       try {
-        const res = await fetch('https://sistech-finpro.vercel.app/api/v1/articles', {
+        const res = await fetch(`https://sistech-finpro.vercel.app/api/v1/articles/${username}`, {
         method: 'GET',
         headers : { 
           'Content-Type': 'application/json',
+          'Authorization': `JWT ${usertoken}`
         },
         });
         if (res.ok){

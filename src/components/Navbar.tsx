@@ -1,8 +1,11 @@
+import { useEffect } from "react";
+let username = '';
+
 export default function Navbar() {
-  let username = '';
-  if (typeof window !== 'undefined') {
+
+  useEffect(() => {
     username = localStorage.getItem('userName') || '';
-  }
+  }, [])
 
   return (
     <nav className="bg-white text-slate-500 h-12 pr-5 text-lg font-sans font-semibold drop-shadow-md flex flex-row justify-between items-center">

@@ -2,9 +2,7 @@
 import Navbar from "@/components/Navbar"
 import Header from "@/components/Header"
 import WriteForm from "@/components/WriteForm"
-import Posts from "@/components/Posts"
-
-
+import YourPosts from "@/components/YourPosts"
 
 export default function Write({params}:{params:{slug:string}}) {
   // const token = localStorage.getItem('userToken')
@@ -24,7 +22,7 @@ export default function Write({params}:{params:{slug:string}}) {
       <Navbar/>
       <Header/>
       <WriteForm/>
-      {/* <Posts/> */}
+      <YourPosts/>
     </main>
   )
 }

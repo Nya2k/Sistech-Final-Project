@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Navbar/>
       <Header/>
-      <Posts posts={[]}/>
+      <Posts/>
     </main>
   )
 }
