@@ -1,15 +1,11 @@
 'use client'
-
-import Navbar from "@/components/Navbar"
-import Header from "@/components/Header"
-import Posts from "@/components/Posts"
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
-  return (
-    <main>
-      <Navbar/>
-      <Header/>
-      <Posts/>
-    </main>
-  )
+  const router = useRouter()
+
+  useEffect (() => {
+    router.push('/articles')
+  },[])
 }

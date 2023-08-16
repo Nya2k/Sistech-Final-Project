@@ -8,12 +8,10 @@ export default function SignInForm() {
 
     const handleUsername = (event: any) => {
         setUsername(event.target.value);
-        console.log(username)
     };
 
     const handlePassword = (event: any) => {
         setPassword(event.target.value);
-        console.log(password)
     };
 
     const handleSignIn = (event: React.FormEvent) => {
@@ -33,9 +31,9 @@ export default function SignInForm() {
             console.log(data.token);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userName', username);
-            router.push("/")
+            router.push("/articles")
         })
-        console.log('done')
+        console.log('sign in success')
     }
 
   return (
@@ -65,7 +63,7 @@ export default function SignInForm() {
                     <a href="/users/signup" className="text-amber-700 ml-1.5">Sign Up</a>
                 </div>
                 <div className="flex justify-end text-sm mt-7 text-slate-500 font-normal">
-                    <a href="/">Start reading without an account 🡪</a>
+                    <a href="/articles">Start reading without an account 🡪</a>
                 </div>
             </form>
         </div>

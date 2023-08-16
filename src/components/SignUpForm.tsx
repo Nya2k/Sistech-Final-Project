@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignUpForm() {
@@ -6,6 +7,7 @@ export default function SignUpForm() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleFirstName = (event: any) => {
         setFirstName(event.target.value);
@@ -29,7 +31,6 @@ export default function SignUpForm() {
 
     const handleSignUp = (event: React.FormEvent) => {
         event.preventDefault();
-        console.log("test");
         fetch('https://sistech-finpro.vercel.app/api/v1/users/signup', {
             method: 'POST',         
             headers: {
@@ -45,15 +46,12 @@ export default function SignUpForm() {
         })
         .then(res => res.json())
         .then((data) => {
-            console.log(data.token);
             localStorage.setItem('userToken', data.token);
             localStorage.setItem('userName', username);
+            router.push("/articles")
         })
-        console.log('sign up succeed')
+        console.log('sign up success')
     }
-    
-    // localStorage.getItem('userToken');
-    // localStorage.clear();
 
   return (
     <div className="flex items-center justify-center py-5">
@@ -105,7 +103,7 @@ export default function SignUpForm() {
                     <a href="/users/signin" className="text-amber-700 ml-1.5">Sign In</a>
                 </div>
                 <div className="flex justify-end text-sm mt-7 text-slate-500 font-normal">
-                    <a href="/">Start reading without an account 🡪</a>
+                    <a href="/articles">Start reading without an account 🡪</a>
                 </div>
             </form>
         </div>
